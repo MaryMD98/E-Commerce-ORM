@@ -49,20 +49,20 @@ router.put('/:id', async (req, res) => {
     const tagUpdate = await Tag.update(req.body, {where: {id: req.params.id,},});
     if (!tagUpdate){ res.status(404).json({ message: 'No tag found with that id!' }); return; }
     // find all associated products from the tag to update
-    const allTags = await ProductTag.findAll({where: {tag_id: req.params.id}});
+    const allTags = await ProductTag.findAll({where: {tag_id: req.params.id} });
     // get a list of all products_ids
-    const productIDS = allTags.map(({product_id}) => product_id);
+    const productIDSs = allTags.map(({product_id}) => product_id);
     // create list of new product_id
-    const newProductTags = re.body.productIds.filter((product_id) => !productIDS.includes(product_id))
-        .map((product_id) => { return {tag_id: req.params.id, product_id,}});
+    const newProductTags = req.body.productIds.filter((product_id) => !productIDSs.includes(product_id))
+        .map((product_id) => { return {tag_id: req.params.id, product_id,};});
     // figure out which ones to remove
-    const tagstoremove = allTags.filter(({product_id}) => !req.body.productIds.include(product_id))
+    const tagstoremove = allTags.filter(({product_id}) => !req.body.productIds.includes(product_id))
         .map(({id}) => id);
     const OldProduct = await ProductTag.destroy({where: {id: tagstoremove}});
     const newTags = await ProductTag.bulkCreate(newProductTags);
     res.status(200).json(newTags);
   }
-  catch (err) {res.status(500).json(err);}
+  catch (err) {res.status(400).json(err);}
 });
 
 // delete on tag by its `id` value
