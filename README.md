@@ -10,7 +10,7 @@ In this homework, I builded the back end of an e-comerce site. I use express, se
 The program has three API routes, Categories, Products, and Tags. The data of each of this routes is displayed in a formated json. Each API routes has a API GET, POST, PUT and DELETE route to display, create, update, and delete the data of the database. The database has 4 models for each area, Categories, Products, Tags and ProducTags.  
 
 ### Link to application:
-Here is a screencapture video demostrating the functionality of the [application](). If this link does not work, you can try [this one]().
+Here is a screencapture video demostrating the functionality of the [application](https://watch.screencastify.com/v/i2O4Ze16iGPK6uptGC20). If this link does not work, you can try [this one](https://drive.google.com/file/d/1wpbAxS8HYk0XBIxW5Yk5FbfWZ4Hl2gPB/view).
 
 ## Table of Content
 
